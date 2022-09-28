@@ -1,18 +1,14 @@
 @extends('app')
 
 @section('titulo', 'Detalhes do Projeto')
-@php
-    echo $project;
-@endphp
+
 @section('conteudo')
     <div class="card">
         <h5 class="card-header">Detalhes do Projeto {{ $project->nome }}</h5>
         <div class="card-body">
             <p><strong>ID: </strong> {{ $project->id }}</p>
             <p><strong>Nome: </strong> {{ $project->nome }}</p>
-            <p><strong>Cliente: </strong> {{ $project->cliente->nome }}</p>
-            <br>
-            <a class="btn btn-success" href="{{ route('projects.index') }}">Voltar para lista</a>
+            <p><strong>Cliente: </strong> {{ $project->client->nome }}</p>
         </div>
     </div>
 

@@ -57,7 +57,7 @@ class ProjectController extends Controller
      */
     public function show(Projects $project)
     {
-        $project->load(['client']);
+        $project->load(['client', 'employees']);
 
         return view('projects.show', [
             'project' => $project
