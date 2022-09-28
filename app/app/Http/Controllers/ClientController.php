@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientRequest;
 use App\Models\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,8 +17,7 @@ class ClientController extends Controller
      */
     public function index(): View
     {
-        $clients = Client::get();
-
+        $clients = Client::paginate(10);
         return view('clients.index', [
             'clients' => $clients
         ]);
@@ -51,16 +51,15 @@ class ClientController extends Controller
     /**
      * Cria um cliente no banco de dados
      *
-     * @param Request $request
+     * @param ClientRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(ClientRequest $request): RedirectResponse
     {
         $dados = $request->except('_token');
-
         Client::create($dados);
-
-        return redirect('/clients');
+        return redirect('/clients')
+            ->with('mensagem', 'Cadastrado com sucesso');
     }
 
     /**
@@ -72,7 +71,6 @@ class ClientController extends Controller
     public function edit(int $id): View
     {
         $client = Client::findOrFail($id);
-
         return view('clients.edit', [
             'client' => $client
         ]);
@@ -82,20 +80,19 @@ class ClientController extends Controller
      * Atualiza o cliente no banco de dados
      *
      * @param integer $id
-     * @param Request $request
+     * @param ClientRequest $request
      * @return RedirectResponse
      */
-    public function update(int $id, Request $request): RedirectResponse
+    public function update(int $id, ClientRequest $request): RedirectResponse
     {
         $client = Client::findOrFail($id);
-
         $client->update([
             'nome' => $request->nome,
             'endereco' => $request->endereco,
             'observacao' => $request->observacao
         ]);
-
-        return redirect('/clients');
+        return redirect('/clients')
+            ->with('mensagem', 'Atualizado com sucesso');
     }
 
     /**
@@ -110,6 +107,7 @@ class ClientController extends Controller
 
         $client->delete();
 
-        return redirect('/clients');
+        return redirect('/clients')
+            ->with('mensagem', 'Apagado com sucesso');
     }
 }

@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($clients as $client)
+            @forelse ($clients as $client)
                 <tr>
                     <th scope="row">{{ $client->id }}</th>
                     <td><a href="{{ route('clients.show', $client) }}">{{ $client->nome }}</a></td>
@@ -24,13 +24,23 @@
                         <form action="{{ route('clients.destroy', $client) }}" method="POST" style="display: inline;">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-danger" type="submit" onclick="return confirm('Tem certeza que deseja apagar?')">Apagar</button>
+                            <button class="btn btn-danger" type="submit"
+                                onclick="return confirm('Tem certeza que deseja apagar?')">Apagar</button>
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td></td>
+                    <td>Nenhum cliente cadastrado</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 
+    {{ $clients->links() }}
+
     <a class="btn btn-success" href="{{ route('clients.create') }}">Novo Cliente</a>
-@endsection    
+@endsection
