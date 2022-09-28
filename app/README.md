@@ -18,5 +18,9 @@ php artisan key:generate
 ### Gerar Migrate
 php artisan migrate
 
+php artisan make:model <NAME> -mf
+php artisan make:migration <NAME>
+php artisan make:controller APi/<NameController> --resource --api
+
 ### Ajustando erros de permissão
 chmod -R 777 /var/www/php/

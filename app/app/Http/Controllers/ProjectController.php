@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Employees;
+use App\Models\Projects;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -13,7 +17,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Projects::with('client')->paginate(15);
+        return view('projects.index', [
+            'projects' => $projects
+        ]);
     }
 
     /**
@@ -23,7 +30,13 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = Client::get();
+        $funcionarios = Employees::ativos();
+
+        return view('projects.create', [
+            'clientes' => $clientes,
+            'funcionarios' => $funcionarios
+        ]);
     }
 
     /**
@@ -34,51 +47,77 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Projects $project
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Projects $project)
     {
-        //
+        $project->load(['client']);
+
+        return view('projects.show', [
+            'project' => $project
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Projects $project
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Projects $project)
     {
-        //
+        $clientes = Client::get();
+        $funcionarios = Employees::ativos();
+
+        return view('projects.edit', [
+            'project' => $project,
+            'clientes' => $clientes,
+            'funcionarios' => $funcionarios
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Projects $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Projects $project)
     {
-        //
+        DB::transaction(function () use ($request, $project) {
+            $project->update(
+                $request->except(['_token', 'funcionarios'])
+            );
+
+            $project->employees()->sync($request->funcionarios);
+        });
+
+        return redirect()->route('projects.index')
+            ->with('mensagem', 'Projeto atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Projects $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Projects $project)
     {
-        //
+        DB::transaction(function () use ($project) {
+            $project->employees()->sync([]);
+
+            $project->delete();
+        });
+
+        return redirect()->route('projects.index')
+            ->with('mensagem', 'Projeto excluido com sucesso!');
     }
 }
