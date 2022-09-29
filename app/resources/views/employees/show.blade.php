@@ -1,7 +1,5 @@
-@extends('app')
-
+@extends('layouts.app')
 @section('titulo', 'Detalhes do Funcionário')
-
 @section('conteudo')
     <div class="py-4">
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
@@ -31,7 +29,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
@@ -40,7 +37,7 @@
                     <p><strong>ID: </strong> {{ $employees->id }}</p>
                     <p><strong>nome: </strong> {{ $employees->nome }}</p>
                     <p><strong>nome: </strong> {{ $employees->data_contratacao }}</p>
-                    <p><strong>Situação: </strong>  {{ $employees->data_demissao === null ? 'Ativo' : 'Demitido' }}</p>
+                    <p><strong>Situação: </strong> {{ $employees->data_demissao === null ? 'Ativo' : 'Demitido' }}</p>
                 </div>
             </div>
         </div>

@@ -16,54 +16,73 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
-        $credentials = $request->only('email', 'password');
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
-            return view('error.404');
+        if (Auth::guard('api')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('home');
         }
 
-        $user = Auth::user();
-        $data = [
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ];
-        return view('index', $data);
-        // return response()->json([
-        //     'status' => 'success',
-        //     'user' => $user,
-        //     'authorisation' => [
-        //         'token' => $token,
-        //         'type' => 'bearer',
-        //     ]
-        // ]);
-
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
+
+
+    // public function login(Request $request)
+    // {
+    //     $request->validate([
+    //         'email' => 'required|string|email',
+    //         'password' => 'required|string',
+    //     ]);
+    //     $credentials = $request->only('email', 'password');
+
+    //     $token = Auth::attempt($credentials);
+    //     if (!$token) {
+    //         return view('error.404');
+    //     }
+
+    //     $user = Auth::user();
+    //     return view('home', [
+    //         'status' => 'success',
+    //         'user' => $user,
+    //         'authorisation' => [
+    //             'token' => $token,
+    //             'type' => 'bearer',
+    //         ]
+    //     ]);
+    //     // return response()->json([
+    //     //     'status' => 'success',
+    //     //     'user' => $user,
+    //     //     'authorisation' => [
+    //     //         'token' => $token,
+    //     //         'type' => 'bearer',
+    //     //     ]
+    //     // ]);
+
+    // }
 
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'avatar' => 'string|email|max:255',
             'password' => 'required|string|min:6',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'avatar' => $request->avatar,
             'password' => Hash::make($request->password),
         ]);
 
         $token = Auth::login($user);
-        $data = [
+        return view('home', [
             'status' => 'success',
             'message' => 'User created successfully',
             'user' => $user,
@@ -71,8 +90,7 @@ class AuthController extends Controller
                 'token' => $token,
                 'type' => 'bearer',
             ]
-        ];
-        return view('index', $data);
+        ]);
 
         // return response()->json([
         //     'status' => 'success',
@@ -88,11 +106,10 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        $data = [
+        return view('home', [
             'status' => 'success',
             'message' => 'Successfully logged out',
-        ];
-        return view('index', $data);
+        ]);
         // return response()->json([
         //     'status' => 'success',
         //     'message' => 'Successfully logged out',
@@ -101,15 +118,14 @@ class AuthController extends Controller
 
     public function refresh()
     {
-        $data = [
+        return view('home', [
             'status' => 'success',
             'user' => Auth::user(),
             'authorisation' => [
                 'token' => Auth::refresh(),
                 'type' => 'bearer',
             ]
-        ];
-        return view('index', $data);
+        ]);
         // return response()->json([
         //     'status' => 'success',
         //     'user' => Auth::user(),

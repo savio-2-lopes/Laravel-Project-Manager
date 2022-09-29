@@ -1,7 +1,5 @@
-@extends('app')
-
+@extends('layouts.app')
 @section('titulo', 'Editar Funcionário')
-
 @section('conteudo')
 <div class="py-4">
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
@@ -37,8 +35,8 @@
 <div class="row">
     <div class="col-12 mb-4">
         <div class="card border-0 shadow components-section">
-            <form  action="#}" method="POST">
-                @include('partials.employees._form')
+            <form  action="#" method="POST">
+                @include('employees.partials._form')
                 <div class="d-flex justify-content-center mb-4">
                     <button class="btn btn-primary btn-large col-3 text-white" type="submit">Atualizar</button>
                 </div>

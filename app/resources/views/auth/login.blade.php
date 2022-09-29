@@ -1,5 +1,5 @@
-@extends('auth')
-@section('titulo', 'Login')
+@extends('layouts.auth')
+@section('titulo', 'Realizar login')
 @section('conteudo')
     <main class="bg-soft container-fluid">
         <section class="row">
@@ -8,7 +8,7 @@
                     <div class="p-4 p-lg-5 w-100 fmxw-500">
                         <div class="text-center text-md-center mb-4 mt-md-0">
                             <h1 class="mb-0 h3 d-flex">
-                                <a href="{{ route('auth.login') }}">
+                                <a href="{{ route('register') }}">
                                     <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -16,12 +16,12 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 </a>
-                                Realizar Login
+                                Realizar login
                             </h1>
                         </div>
-                        <form action="{{ route('authentication.login') }}" method="POST">
+
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            <!-- Form -->
                             <div class="form-group mb-4">
                                 <label for="email">Seu e-mail</label>
                                 <div class="input-group">
@@ -31,18 +31,21 @@
                                             <path
                                                 d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
                                             </path>
-                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
-                                            </path>
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                                         </svg>
                                     </span>
-                                    <input type="email" name="email" class="form-control" placeholder="example@company.com"
-                                        id="email" autofocus required>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="example@company.com" id="email" autofocus required>
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
-                            <!-- End of Form -->
                             <div class="form-group">
-                                <!-- Form -->
                                 <div class="form-group mb-4">
                                     <label for="password">Sua Senha</label>
                                     <div class="input-group">
@@ -54,19 +57,43 @@
                                                     clip-rule="evenodd"></path>
                                             </svg>
                                         </span>
-                                        <input type="password" name="password" placeholder="Senha" class="form-control" id="password"
+                                        <input type="password" name="password" placeholder="Sua senha..."
+                                            class="form-control" id="password" required autocomplete="new-password"
                                             required>
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="remember">
+                                        <label class="form-check-label fw-normal mb-0" for="remember">
+                                            Eu aceito os <a href="#" class="fw-bold">termos de condição</a>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-gray-800">Sign in</button>
+                                <button type="submit" class="btn btn-gray-800">{{ __('Login') }}</button>
                             </div>
                         </form>
+
                         <div class="d-flex justify-content-center align-items-center mt-4">
                             <span class="fw-normal">
-                                Não possui registro?
-                                <a href="{{ route('auth.register') }}" class="fw-bold">Criar uma conta</a>
+                                Não possui conta?
+                                <a href="{{ route('register') }}" class="fw-bold">Realizar cadastro</a>
                             </span>
                         </div>
                     </div>

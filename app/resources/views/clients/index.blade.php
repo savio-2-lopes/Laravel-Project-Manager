@@ -1,7 +1,5 @@
-@extends('app')
-
+@extends('layouts.app')
 @section('titulo', 'Lista de clientes')
-
 @section('conteudo')
     <div class="py-4">
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
@@ -36,11 +34,10 @@
             </div>
         </div>
     </div>
-
     <div class="card border-0 shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                @include('partials.clients._table')
+                @include('clients.partials._table')
             </div>
         </div>
     </div>

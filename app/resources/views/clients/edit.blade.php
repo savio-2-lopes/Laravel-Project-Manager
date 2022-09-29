@@ -1,7 +1,5 @@
-@extends('app')
-
+@extends('layouts.app')
 @section('titulo', 'Editar Cliente')
-
 @section('conteudo')
     <div class="py-4">
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
@@ -39,7 +37,7 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
                 <form action="{{ route('clients.update', $client) }}" method="POST">
-                    @include('partials.clients._form')
+                    @include('clients.partials._form')
                     <div class="d-flex justify-content-center mb-4">
                         <button class="btn btn-primary btn-large col-3 text-white" type="submit">Atualizar</button>
                     </div>

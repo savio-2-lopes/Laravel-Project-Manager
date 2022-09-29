@@ -1,9 +1,6 @@
-@extends('app')
-
+@extends('layouts.app')
 @section('titulo', 'Lista de Projetos')
-
 @section('conteudo')
-
     <div class="py-4">
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
             <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -37,14 +34,12 @@
             </div>
         </div>
     </div>
-
     <div class="card border-0 shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                @include('partials.projects._table')
+                @include('projects.partials._table')
             </div>
         </div>
     </div>
-
     {{ $projects->links() }}
 @endsection

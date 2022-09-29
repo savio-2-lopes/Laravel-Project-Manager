@@ -26,10 +26,9 @@
                     <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="media d-flex align-items-center">
-                            <img class="avatar rounded-circle" alt="Image placeholder"
-                                src="https://github.com/savio-2-lopes.png" />
+                            <img class="avatar rounded-circle" alt="Image placeholder" src="{{ $user['avatar'] ?? '' }}" />
                             <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                <span class="mb-0 font-small fw-bold text-gray-900">Savio LOpes</span>
+                                <span class="mb-0 font-small fw-bold text-gray-900">{{ $user['name'] ?? '' }}</span>
                             </div>
                         </div>
                     </a>

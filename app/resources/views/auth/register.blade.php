@@ -1,4 +1,4 @@
-@extends('auth')
+@extends('layouts.auth')
 @section('titulo', 'Registrar perfil')
 @section('conteudo')
     <main class="bg-soft container-fluid">
@@ -8,7 +8,7 @@
                     <div class="p-4 p-lg-5 w-100 fmxw-500">
                         <div class="text-center text-md-center mb-4 mt-md-0">
                             <h1 class="mb-0 h3 d-flex">
-                                <a href="{{ route('auth.login') }}">
+                                <a href="{{ route('login') }}">
                                     <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -19,7 +19,7 @@
                                 Criar perfil
                             </h1>
                         </div>
-                        <form action="{{ route('authentication.register') }}" method="POST">
+                        <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <!-- Form -->
                             <div class="form-group mb-4">
@@ -36,8 +36,31 @@
                                     </span>
                                     <input type="email" name="email" class="form-control"
                                         placeholder="example@company.com" id="email" autofocus required>
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
+                            <!-- Form -->
+                            <div class="form-group mb-4">
+                                <label for="password">Avatar</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+                                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            <path
+                                                d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z" />
+                                        </svg>
+                                    </span>
+                                    <input type="avatar" name="avatar" placeholder="Adicione sua imagem..."
+                                        class="form-control" id="avatar">
+                                </div>
+                            </div>
+                            <!-- End of Form -->
                             <!-- End of Form -->
                             <div class="form-group">
                                 <!-- Form -->
@@ -57,6 +80,12 @@
                                         </span>
                                         <input type="name" name="name" placeholder="Seu nome..." class="form-control"
                                             id="name" required>
+
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- End of Form -->
@@ -73,7 +102,14 @@
                                             </svg>
                                         </span>
                                         <input type="password" name="password" placeholder="Sua senha..."
-                                            class="form-control" id="password" required>
+                                            class="form-control" id="password" required autocomplete="new-password"
+                                            required>
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- End of Form -->
@@ -86,14 +122,22 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-gray-800">Registrar</button>
+                                <button type="submit" class="btn btn-gray-800">{{ __('Register') }}</button>
                             </div>
                         </form>
+
                         <div class="d-flex justify-content-center align-items-center mt-4">
                             <span class="fw-normal">
                                 Já possui conta?
-                                <a href="{{ route('auth.login') }}" class="fw-bold">Realize Login</a>
+                                <a href="{{ route('login') }}" class="fw-bold">Realize Login</a>
                             </span>
                         </div>
                     </div>

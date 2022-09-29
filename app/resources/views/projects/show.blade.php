@@ -1,7 +1,5 @@
-@extends('app')
-
+@extends('layouts.app')
 @section('titulo', 'Detalhes do Projeto')
-
 @section('conteudo')
     <div class="py-4">
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
@@ -31,7 +29,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
@@ -42,7 +39,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
                 <h5 class="card-header">Funcionários que trabalham no projeto {{ $project->nome }}</h5>
@@ -64,18 +60,18 @@
                                         </a>
                                     </td>
                                 </tr>
-                                @empty
-                                    <tr>
-                                        <td></td>
-                                        <td>Nenhum Funcionário neste projeto</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
+                            @empty
+                                <tr>
+                                    <td></td>
+                                    <td>Nenhum Funcionário neste projeto</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
