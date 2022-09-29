@@ -10,6 +10,11 @@ use Illuminate\View\View;
 
 class ClientController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api');
+    // }
+
     /**
      * Lista os clientes
      *

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Home;
@@ -17,19 +19,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Home::class)->name('index');
+// Autenticação
+Route::controller(AuthController::class)->group(function () {
+  Route::post('login', 'login')->name('authentication.login');
+  Route::post('register', 'register')->name('authentication.register');
+  Route::post('logout', 'logout');
+  Route::post('refresh', 'refresh');
+});
 
+// Telas de Autenticação
+Route::get('signin', [Auth::class, 'signin'])->name('auth.login');
+Route::get('signup', [Auth::class, 'signup'])->name('auth.register');
+
+// Home
+Route::get('/', Home::class)->name('index');
 // Clientes
 Route::resource('clients', ClientController::class);
-
+// Funcionários
+Route::resource('employees', EmployeeController::class);
 // Projetos
-Route::get('/projects', [
-  ProjectController::class, 'index'
-])->name('projects.index');
-
-Route::get('/projects/{project}', [
-  ProjectController::class, 'show'
-])->name('projects.show');
-
-// Route::resource('employees', EmployeeController::class);
-// Route::resource('projects', ProjectController::class);
+Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('projects/{project}', [ProjectController::class, 'show'])->name('projects.show');

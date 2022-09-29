@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +26,7 @@ class ProjectController extends Controller
             'projects' => $projects
         ]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
