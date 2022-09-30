@@ -21,11 +21,8 @@
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
-            <div class="mb-3 mb-lg-0">
+            <div class="mb-4 mt-4 mb-lg-0">
                 <h1 class="h4">Lista de Funcionários</h1>
-                <p class="mb-0">
-                    Listagem de Funcionários
-                </p>
             </div>
             <div>
                 <a href="{{ route('employees.create') }}" class="btn btn-outline-gray-600 d-inline-flex align-items-center">

@@ -1,6 +1,7 @@
 @csrf
 <div class="card-body">
-    <div class="row">
+    <h2 class="h5 mb-4">Informações Gerais</h2>
+    <div class="row mb-4">
         <div class="col-lg-4 col-sm-6">
             {{-- Nome --}}
             <div class="mb-4">
@@ -26,6 +27,7 @@
         </div>
     </div>
 
+    <h2 class="h5 mb-4">Alocação de Recursos</h2>
     <div class="row">
         <div class="col-lg-4 col-sm-6">
             {{-- Clientes --}}
@@ -64,7 +66,8 @@
         </div>
     </div>
 
-    <div class="row mb-2">
+    <h2 class="h5 mb-4">Datas de Funcionamento</h2>
+    <div class="row mb-5">
         <div class="col-md-4">
             <label for="data_inicio">Data Início</label>
             <div class="input-group">
@@ -76,10 +79,11 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </span>
-                <input required
+                <input data-datepicker=""
                     value="{{ old('data_inicio', isset($project->data_inicio) ? date_to_br($project->data_inicio) : '') }}"
-                    class="form-control" type="text" name="data_inicio" id="data_inicio" data-mask="00/00/0000"
-                    placeholder="Digite a data de início" aria-describedby="dateStartHelp">
+                    name="data_inicio" aria-describedby="dateStartHelp" class="form-control"
+                    placeholder="Digite a data de início" data-mask="00/00/0000" id="date_contration" type="text"
+                    placeholder="dd/mm/yyyy" required />
             </div>
             <small id="dateStartHelp" class="form-text text-muted">
                 Insira a data de iníco.
@@ -97,10 +101,11 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </span>
-                <input required
+                <input data-datepicker=""
                     value="{{ old('data_final', isset($project->data_final) ? date_to_br($project->data_final) : '') }}"
-                    class="form-control" type="text" name="data_final" id="data_final" data-mask="00/00/0000"
-                    placeholder="Digite a data de Final" aria-describedby="dateEndHelp">
+                    name="data_final" aria-describedby="dateEndHelp" class="form-control"
+                    placeholder="Digite a data de Final" data-mask="00/00/0000" id="data_final" type="text"
+                    placeholder="dd/mm/yyyy" required />
             </div>
             <small id="dateEndHelp" class="form-text text-muted">
                 Insira a data final.
@@ -108,7 +113,7 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-center mb-4 mt-4">
-        <button class="btn btn-primary btn-large col-3 text-white" type="submit">Enviar</button>
-    </div>
+    <button class="btn btn-primary btn-large text-white" type="submit">
+        Salvar os dados do Projeto
+    </button>
 </div>

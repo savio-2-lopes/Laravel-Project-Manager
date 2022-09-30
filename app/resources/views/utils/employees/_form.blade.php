@@ -1,7 +1,8 @@
 @csrf
 
 <div class="card-body">
-    <div class="row">
+    <h2 class="h5 mb-4">Informações Gerais</h2>
+    <div class="row mb-4">
         <div class="col-lg-4 col-sm-6">
             {{-- Nome --}}
             <div class="mb-4">
@@ -37,7 +38,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </span>
-                    <input value="{{ old('data_contratacao') }}"
+                    <input data-datepicker=""
                         value="{{ old('data_contratacao', isset($employee->data_contratacao) ? date_to_br($employee->data_contratacao) : '') }}"
                         name="data_contratacao" aria-describedby="dateContrationHelp" class="form-control"
                         data-mask="00/00/0000" id="date_contration" type="text" placeholder="dd/mm/yyyy" required />
@@ -48,8 +49,11 @@
             </div>
             {{-- Final da Data de Contratação --}}
         </div>
+    </div>
 
-        <div class="row mb-2">
+    <h2 class="h5 mb-4">Localização</h2>
+    <div class="mb-5">
+        <div class="row mb-4">
             <div class="col-md-4">
                 {{-- Logradouro --}}
                 <div class="form-group">
@@ -119,16 +123,15 @@
                 {{-- Estado --}}
                 <div class="form-group">
                     <label for="estado">Estado</label>
-                    <input required value="{{ old('estado', $employee->address->estado ?? '') }}"
-                        class="form-control" type="text" name="estado" id="estado" data-mask="SS"
-                        placeholder="Digite o estado">
+                    <input required value="{{ old('estado', $employee->address->estado ?? '') }}" class="form-control"
+                        type="text" name="estado" id="estado" data-mask="SS" placeholder="Digite o estado">
                 </div>
                 {{-- Final do Estado --}}
             </div>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center mb-4 mt-4">
-        <button class="btn btn-primary btn-large col-3 text-white" type="submit">Enviar</button>
-    </div>
+    <button class="btn btn-primary btn-large text-white" type="submit">
+        Salvar os dados do Funcionários
+    </button>
 </div>

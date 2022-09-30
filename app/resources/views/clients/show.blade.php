@@ -20,15 +20,12 @@
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
-            <div class="mb-3 mb-lg-0">
+            <div class="mb-4 mt-4 mb-lg-0">
                 <h1 class="h4">
                     <a href="{{ route('clients.index') }}">
-                        <i class="ph-caret-left-fill" style="font-size: 20px"></i>
+                        <i class="ph-arrow-left-fill" style="font-size: 20px"></i>
                     </a> Editar Cliente {{ $client->nome }}
                 </h1>
-                <p class="mb-0">
-                    Editar cliente {{ $client->nome }}.
-                </p>
             </div>
         </div>
     </div>

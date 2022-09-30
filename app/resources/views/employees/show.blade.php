@@ -16,15 +16,15 @@
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('employees.index') }}">Funcionário</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $employees->nome }}</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $employee->nome }}</li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
-            <div class="mb-3 mb-lg-0">
+            <div class="mb-4 mt-4 mb-lg-0">
                 <h1 class="h4">
                     <a href="{{ route('employees.index') }}">
-                        <i class="ph-caret-left-fill" style="font-size: 20px"></i>
-                    </a> Detalhe do Funcionário {{ $employees->nome }}
+                        <i class="ph-arrow-left-fill" style="font-size: 20px"></i>
+                    </a> Detalhe do Funcionário {{ $employee->nome }}
                 </h1>
             </div>
         </div>
@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
-                <h5 class="card-header">Detalhes do Funcionário {{ $employees->nome }}</h5>
+                <h5 class="card-header">Detalhes do Funcionário {{ $employee->nome }}</h5>
                 <div class="card-body">
                     <p><strong>ID: </strong> {{ $employee->id }}</p>
                     <p><strong>nome: </strong> {{ $employee->nome }}</p>
@@ -41,10 +41,10 @@
                     <p>
                         <strong>Situação: </strong> {{ situacao_funcionario($employee->data_demissao) }}
 
-                        @if (!$employee->data_demissao)
+                        {{-- @if (!$employee->data_demissao)
                             <a href="{{ route('employees.inativar', $employee) }}" class="btn btn-danger">Inativar
                                 Funcionário</a>
-                        @endif
+                        @endif --}}
                     </p>
                 </div>
             </div>
@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
-                <h5 class="card-header">Endereço do Funcionário {{ $employees->nome }}</h5>
+                <h5 class="card-header">Endereço do Funcionário {{ $employee->nome }}</h5>
                 <div class="card-body">
                     <p><strong>Logradouro: </strong> {{ $employee->address->logradouro }}</p>
                     <p><strong>Número: </strong> {{ $employee->address->numero }}</p>

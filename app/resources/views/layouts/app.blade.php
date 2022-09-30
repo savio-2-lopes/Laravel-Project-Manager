@@ -44,6 +44,8 @@
     {{-- Scripts --}}
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
     </script>
@@ -61,9 +63,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
-        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -92,14 +91,7 @@
         </script>
     @endif
 
-    <main class="content">
-        {{-- Loading --}}
-        <div class="loading">
-            <div class="loader">
-            </div>
-        </div>
-        {{-- Final do Loading  --}}
-
+    <main class="content h-100 bg-ligth">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -112,8 +104,14 @@
 
         <div class="p-4">
             @include('partials._navbar')
+            {{-- Loading --}}
+            <div class="loading">
+                <div class="loader">
+                </div>
+            </div>
+            {{-- Final do Loading  --}}
             @yield('conteudo')
-            {{-- @include('partials._footer') --}}
+            @include('partials._footer')
         </div>
     </main>
 
@@ -121,6 +119,8 @@
     <script>
         $(function() {
             "use strict";
+            $("#cpf").mask("000.000.000-00");
+            $("#cep").mask("00000-000");
             setTimeout(function() {
                 $('.loading').fadeToggle();
             }, 1500);

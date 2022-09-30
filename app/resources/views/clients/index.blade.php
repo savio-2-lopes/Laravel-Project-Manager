@@ -21,7 +21,7 @@
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
-            <div class="mb-3 mb-lg-0">
+            <div class="mb-4 mt-4 mb-lg-0">
                 <h1 class="h4">Lista de Clientes</h1>
                 <p class="mb-0">
                     Listagem de Clientes

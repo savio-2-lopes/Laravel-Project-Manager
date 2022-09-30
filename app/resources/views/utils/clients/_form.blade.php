@@ -1,7 +1,8 @@
 @csrf
 
 <div class="card-body">
-    <div class="row">
+    <h2 class="h5 mb-4">Informações Gerais</h2>
+    <div class="row mb-4">
         <div class="col-6">
             {{-- Nome --}}
             <div class="mb-4">
@@ -14,7 +15,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-4 col-sm-6">
             {{-- Endereço --}}
             <div class="my-4">
@@ -34,7 +35,7 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-center mb-4 mt-4">
-        <button class="btn btn-primary btn-large col-3 text-white" type="submit">Enviar</button>
-    </div>
+    <button class="btn btn-primary btn-large text-white" type="submit">
+        Salvar os dados do Cliente
+    </button>
 </div>

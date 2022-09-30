@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Client;
 use App\Models\Employees;
 use App\Models\Projects;
@@ -44,7 +45,7 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
         DB::transaction(function () use ($request) {
             $project = Projects::create(
@@ -95,7 +96,7 @@ class ProjectController extends Controller
      * @param  Projects $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Projects $project)
+    public function update(ProjectRequest $request, Projects $project)
     {
         DB::transaction(function () use ($request, $project) {
             $project->update(

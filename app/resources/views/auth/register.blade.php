@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 @section('conteudo')
-    <main class="bg-soft container-fluid">
+    <main class="bg-ligth container-fluid">
         <section class="row">
-            <div class="vh-100 col-lg-6 d-flex align-items-center justify-content-center">
+            <div class="col-lg-6 d-flex align-items-center justify-content-center" style="min-height: 100vh">
                 <div class="col-12 d-flex justify-content-center">
                     <div class="p-4 p-lg-5 w-100 fmxw-500">
                         <div class="text-center text-md-center mb-4 mt-md-0">
@@ -149,7 +149,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 bg-custom-image-register"></div>
+            <div class="col-lg-6 bg-custom-image-register" style="min-height: 100vh"></div>
         </section>
     </main>
 @endsection

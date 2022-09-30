@@ -8,9 +8,9 @@
                     <div class="col-12 text-center d-flex align-items-center justify-content-center">
                         <div>
                             <img class="img-fluid w-75" src="/img/illustrations/404.svg" alt="404 not found">
-                            <h1 class="mt-5">Page not <span class="fw-bolder text-primary">found</span></h1>
-                            <p class="lead my-4">Oops! Looks like you followed a bad link. If you think this is a
-                                problem with us, please tell us.</p>
+                            <h1 class="mt-5">Página <span class="fw-bolder text-primary">não encontrada</span></h1>
+                            <p class="lead my-4">Ops! Parece que você seguiu um link ruim. Se você acha que isso é um
+                                problema conosco, por favor nos diga.</p>
                             <a href="{{ route('auth.login') }}"
                                 class="btn btn-gray-800 d-inline-flex align-items-center justify-content-center mb-4">
                                 <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"

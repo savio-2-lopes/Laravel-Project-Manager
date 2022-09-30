@@ -43,12 +43,12 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/converters.php",
+            "app/Helpers/utils.php"
+        ]
     },
-    "files": [
-        "app/Helpers/converters.php",
-        "app/Helpers/utils.php"
-    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
