@@ -40,6 +40,9 @@
     <link rel="stylesheet" href="/css/volt.css">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
     {{-- Scripts --}}
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -63,6 +66,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -105,7 +109,7 @@
             </div>
             {{-- Final do Loading  --}}
             @yield('conteudo')
-            @include('partials._footer')
+            {{-- @include('partials._footer') --}}
         </div>
     </main>
 
@@ -117,6 +121,12 @@
             // Mascaras
             $("#cpf").mask("000.000.000-00");
             $("#cep").mask("00000-000");
+
+            // Select 2
+            $('#select2').select2({
+                theme: 'bootstrap-5',
+            });
+            $('#funcionarios').select2();
 
             // Alerta
             setTimeout(function() {

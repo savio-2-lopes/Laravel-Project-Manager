@@ -18,7 +18,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Projects::with('client')->paginate(15);
+        $projects = Projects::with('client')->paginate(5);
         return view('projects.index', [
             'projects' => $projects
         ]);
@@ -119,7 +119,6 @@ class ProjectController extends Controller
     {
         DB::transaction(function () use ($project) {
             $project->employees()->sync([]);
-
             $project->delete();
         });
         return redirect()->route('projects.index')

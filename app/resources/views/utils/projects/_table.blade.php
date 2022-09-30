@@ -20,8 +20,8 @@
                 <td class="fw-bold">{{ $project->client->nome }}</td>
                 <td class="fw-bold">
                     <a class="btn btn-primary" href="{{ route('projects.edit', $project) }}">Editar</a>
-                    <a class="btn btn-secondary" href="{{ route('projects.show', $project) }}">Atualizar</a>
-                    <form action="#" method="POST" style="display: inline;">
+                    <a class="btn btn-secondary" href="{{ route('projects.show', $project) }}">Exibir</a>
+                    <form action="{{ route('projects.destroy', $project) }}" method="POST" style="display: inline;">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" type="submit"

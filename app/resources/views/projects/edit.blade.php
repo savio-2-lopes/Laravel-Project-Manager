@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
-                <form action="{{ route('projects.store') }}" method="POST">
+                <form action="{{ route('projects.update', $project) }}" method="POST">
                     @method('PUT')
                     @include('utils.projects._form')
                 </form>

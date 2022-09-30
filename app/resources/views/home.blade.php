@@ -65,14 +65,14 @@
                                         </svg>
                                     </div>
                                     <div class="d-sm-none">
-                                        <h2 class="h5">Clientes</h2>
-                                        <h3 class="fw-extrabold mb-1">2</h3>
+                                        <h2 class="h4">Clientes</h2>
+                                        <h6 class="fw-semibold mb-1">Atalho de listagem dos clientes</h6>
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-7 px-xl-0">
                                     <div class="d-none d-sm-block">
-                                        <h2 class="h6 text-gray-400 mb-0">Clientes</h2>
-                                        <h3 class="fw-extrabold mb-2">2</h3>
+                                        <h2 class="h4 text-gray-400 mb-0">Clientes</h2>
+                                        <h6 class="fw-semibold mb-2">Atalho de listagem dos clientes</h6>
                                     </div>
                                 </div>
                             </div>
@@ -99,14 +99,14 @@
                                         </svg>
                                     </div>
                                     <div class="d-sm-none">
-                                        <h2 class="fw-extrabold h5">Projetos</h2>
-                                        <h3 class="mb-1">2</h3>
+                                        <h2 class="fw-extrabold h4">Projetos</h2>
+                                        <h6 class="fw-semibold mb-2">Atalho de listagem dos Projetos</h6>
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-7 px-xl-0">
                                     <div class="d-none d-sm-block">
-                                        <h2 class="h6 text-gray-400 mb-0">Projetos</h2>
-                                        <h3 class="fw-extrabold mb-2">2</h3>
+                                        <h2 class="h4 text-gray-400 mb-0">Projetos</h2>
+                                        <h6 class="fw-semibold mb-2">Atalho de listagem dos Projetos</h6>
                                     </div>
                                 </div>
                             </div>
@@ -133,14 +133,14 @@
                                         </svg>
                                     </div>
                                     <div class="d-sm-none">
-                                        <h2 class="fw-extrabold h5">Funcionários</h2>
-                                        <h3 class="mb-1">2</h3>
+                                        <h2 class="fw-extrabold h4">Funcionários</h2>
+                                        <h6 class="fw-semibold mb-2">Atalho de listagem dos Funcionários</h6>
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-7 px-xl-0">
                                     <div class="d-none d-sm-block">
-                                        <h2 class="h6 text-gray-400 mb-0">Funcionários</h2>
-                                        <h3 class="fw-extrabold mb-2">2</h3>
+                                        <h2 class="h4 text-gray-400 mb-0">Funcionários</h2>
+                                        <h6 class="fw-semibold mb-2">Atalho de listagem dos Funcionários</h6>
                                     </div>
                                 </div>
                             </div>

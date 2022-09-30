@@ -19,7 +19,7 @@
             <div class="mb-4">
                 <label for="orcamento">Orçamento</label>
                 <input type="text" name="orcamento" value="{{ old('orcamento', $project->orcamento ?? '') }}"
-                    class="form-control" data-mask="#.##0,00" data-mask-reverse="true" id="orcamento"
+                    class="form-control" id="orcamento"
                     aria-describedby="orcamentoHelp" />
                 <small id="orcamentoHelp" class="form-text text-muted">Insira o orcamento do projeto.</small>
             </div>
@@ -33,7 +33,7 @@
             {{-- Clientes --}}
             <div class="mb-4">
                 <label for="clientes">Clientes</label>
-                <select class="form-control" id="client_id" required="required"
+                <select class="form-control" id="select2" required="required"
                     name="client_id"aria-describedby="clientesHelp">
                     <option>Selecione o cliente</option>
                     @foreach ($clientes as $cliente)

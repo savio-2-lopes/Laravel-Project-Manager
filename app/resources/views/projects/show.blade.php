@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <p><strong>ID: </strong> {{ $project->id }}</p>
                     <p><strong>Nome: </strong> {{ $project->nome }}</p>
-                    <p><strong>Situação: </strong> {{ $project->client->nome }}</p>
+                    <p><strong>Cliente: </strong> {{ $project->client->nome }}</p>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                                 <tr>
                                     <th scope="row">{{ $employee->id }}</th>
                                     <td class="fw-bold">
-                                        <a href="{{ route('employees.show', $employee) }}">{{ $project->nome }}
+                                        <a href="{{ route('employees.show', $employee) }}">{{ $employee->nome }}
                                         </a>
                                     </td>
                                 </tr>

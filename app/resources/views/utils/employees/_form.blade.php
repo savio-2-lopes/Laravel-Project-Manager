@@ -1,5 +1,4 @@
 @csrf
-
 <div class="card-body">
     <h2 class="h5 mb-4">Informações Gerais</h2>
     <div class="row mb-4">
@@ -7,7 +6,7 @@
             {{-- Nome --}}
             <div class="mb-4">
                 <label for="nome">Nome</label>
-                <input type="text" value="{{ old('nome', $employees->nome ?? '') }}" placeholder="Insita o nome"
+                <input type="text" value="{{ old('nome', $employee->nome ?? '') }}" placeholder="Insita o nome"
                     name="nome" class="form-control" id="nome" maxlength="100" aria-describedby="nomeHelp" />
                 <small id="nomeHelp" class="form-text text-muted">Insira o nome do projeto.</small>
             </div>
@@ -18,9 +17,10 @@
             {{-- CPF --}}
             <div class="mb-4">
                 <label for="cpf">CPF</label>
-                <input type="text" name="cpf" value="{{ old('cpf', $employees->cpf ?? '') }}"
-                    class="form-control" id="cpf" data-mask="000.000.000-00" aria-describedby="cpfHelp" />
-                <small id="cpfHelp" class="form-text text-muted">Insira o cpf do funcionário.</small>
+                <input type="text" name="cpf" placeholder="Insira o CPF"
+                    value="{{ old('cpf', $employee->cpf ?? '') }}" class="form-control" id="cpf"
+                    data-mask="000.000.000-00" aria-describedby="cpfHelp" />
+                <small id="cpfHelp" class="form-text text-muted">Insira o CPF do funcionário.</small>
             </div>
             {{-- Final do CPF --}}
         </div>
@@ -123,8 +123,20 @@
                 {{-- Estado --}}
                 <div class="form-group">
                     <label for="estado">Estado</label>
-                    <input required value="{{ old('estado', $employee->address->estado ?? '') }}" class="form-control"
-                        type="text" name="estado" id="estado" data-mask="SS" placeholder="Digite o estado">
+                    <select class="form-control" id="select2" required="required"
+                        name="estado"aria-describedby="estadoHelp">
+                        <option>Selecione o Estado</option>
+                        @foreach ($estados as $sigla_estado => $estado)
+                            <option {{ ($employee->address->estado ?? '') === $sigla_estado ? 'selected' : '' }}
+                                value="{{ $sigla_estado }}">
+                                {{ $sigla_estado }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    {{-- <input required value="{{ old('estado', $employee->address->estado ?? '') }}"
+                        class="form-control" type="text" name="estado" id="estado" data-mask="SS"
+                        placeholder="Digite o estado"> --}}
                 </div>
                 {{-- Final do Estado --}}
             </div>

@@ -27,7 +27,7 @@ class EmployeeRequest extends FormRequest
         return [
             'nome' => ['required', 'min:2', 'max: 100', 'string'],
             'cpf' => ['required', 'size:14', 'string'],
-            'data_contratacao' => ['required', 'date_format:d/m/Y'],
+            'data_contratacao' => ['required'],
             'logradouro' => ['required', 'min:2', 'max:255', 'string'],
             'numero' => ['required', 'max:20', 'string'],
             'bairro' => ['required', 'max:50', 'string'],

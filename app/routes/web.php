@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\InactiveEmployee;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ Route::resource('clients', ClientController::class);
 Route::resource('employees', EmployeeController::class);
 // Projetos
 Route::resource('projects', ProjectController::class);
+// Inativar funcionário
+Route::get('employees/{employee}/inativar', InactiveEmployee::class)->name('employees.inactive');
 // Autenticação
 Auth::routes();
 // Home

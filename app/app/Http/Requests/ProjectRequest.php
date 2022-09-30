@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MonetaryValue;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
@@ -26,7 +27,7 @@ class ProjectRequest extends FormRequest
   {
     return [
       'nome' => ['required', 'string', 'min:2', 'max:100'],
-      'orcamento' => ['required', 'min:0'],
+      'orcamento' => ['required', 'min:0', new MonetaryValue],
       'data_inicio' => ['required'],
       'data_final' => ['required'],
       'client_id' => ['required', 'int'],

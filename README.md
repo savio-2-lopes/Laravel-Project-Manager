@@ -20,3 +20,10 @@ php artisan migrate
 
 ### Ajustando erros de permissão
 chmod -R 777 /var/www/php/
+
+## Creditos de imagem
+
+As imagens que representam os restaurante e pratos foram obtidas do site [unsplash](unsplash), que armazena imagens gratuitas. Abaixo os créditos aos autores das imagens:
+
+[Bonnie Kittle](https://unsplash.com/s/photos/computer?utm_source=unsplash)
+[Christin Hume](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
