@@ -102,7 +102,7 @@ class ClientController extends Controller
     public function destroy(Client $client): RedirectResponse
     {
         $client->delete();
-
-        return redirect('/clients');
+        return redirect()->route('clients.index')
+            ->with('mensagem', 'Deletado com sucesso');
     }
 }

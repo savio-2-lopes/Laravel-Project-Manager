@@ -79,31 +79,25 @@
 
     @include('partials._sidebar')
 
-    @if (session('mensagem'))
-        <script>
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: {{ session('mensagem') }},
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
-    @endif
 
-    <main class="content h-100 bg-ligth">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
+    <main class="content h-100 bg-ligth" role="main">
         <div class="p-4">
             @include('partials._navbar')
+            @if ($errors->any())
+                <div class="alert alert-danger mt-4" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            {{-- Alerta --}}
+            @if (session('mensagem'))
+                <div class="alert alert-success mt-4" role="alert">
+                    {{ session('mensagem') }}
+                </div>
+            @endif
             {{-- Loading --}}
             <div class="loading">
                 <div class="loader">
@@ -119,8 +113,19 @@
     <script>
         $(function() {
             "use strict";
+
+            // Mascaras
             $("#cpf").mask("000.000.000-00");
             $("#cep").mask("00000-000");
+
+            // Alerta
+            setTimeout(function() {
+                $(".alert-success").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 1500);
+
+            // Loading
             setTimeout(function() {
                 $('.loading').fadeToggle();
             }, 1500);

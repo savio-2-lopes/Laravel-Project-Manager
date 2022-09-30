@@ -2,15 +2,13 @@
 
 <div class="card-body">
     <h2 class="h5 mb-4">Informações Gerais</h2>
-    <div class="row mb-4">
+    <div class="row mb-2">
         <div class="col-6">
             {{-- Nome --}}
-            <div class="mb-4">
-                <label for="nome">Nome</label>
-                <input type="text" value="{{ old('nome', $client->nome ?? '') }}" name="nome" class="form-control"
-                    id="nome" placeholder="Insira o seu nome..." aria-describedby="nomeHelp" />
-                <small id="nomeHelp" class="form-text text-muted">Insira o nome do cliente.</small>
-            </div>
+            <label for="nome">Nome</label>
+            <input type="text" value="{{ old('nome', $client->nome ?? '') }}" name="nome" class="form-control"
+                id="nome" placeholder="Insira o seu nome..." aria-describedby="nomeHelp" />
+            <small id="nomeHelp" class="form-text text-muted">Insira o nome do cliente.</small>
             {{-- Final Nome --}}
         </div>
     </div>
