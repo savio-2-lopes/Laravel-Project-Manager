@@ -14,7 +14,7 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
                     Lista de Funcionários
                 </li>
@@ -35,10 +35,8 @@
         </div>
     </div>
     <div class="card border-0 shadow mb-4">
-        <div class="card-body">
-            <div class="table-responsive">
-                @include('employees.partials._table')
-            </div>
+        <div class="table-responsive">
+            @include('utils.employees._table')
         </div>
     </div>
     {{ $employee->links() }}

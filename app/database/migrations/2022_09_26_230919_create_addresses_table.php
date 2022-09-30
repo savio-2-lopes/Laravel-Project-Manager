@@ -22,8 +22,8 @@ class CreateAddressesTable extends Migration
             $table->string('complemento', 50)->nullable();
             $table->char('cep', 8);
             $table->char('estado', 2);
-            $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->unsignedBigInteger('employees_id');
+            $table->foreign('employees_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }

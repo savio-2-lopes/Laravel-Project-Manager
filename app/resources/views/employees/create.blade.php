@@ -14,20 +14,20 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Novo Funcionário</li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
-                <h1 class="h4">Novo Funcionário</h1>
+                <h1 class="h4">
+                    <a href="{{ route('employees.index') }}">
+                        <i class="ph-caret-left-fill" style="font-size: 20px"></i>
+                    </a> Novo Funcionário
+                </h1>
                 <p class="mb-0">
                     Registrando um novo funcionário.
                 </p>
-            </div>
-            <div>
-                <a href="{{ route('employees.index') }}" class="btn btn-outline-gray">
-                    <i class="ph-caret-circle-left-fill"></i> Voltar</a>
             </div>
         </div>
     </div>
@@ -36,10 +36,7 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
                 <form action="{{ route('employees.store') }}" method="POST">
-                    @include('employees.partials._form')
-                    <div class="d-flex justify-content-center mb-4">
-                        <button class="btn btn-primary btn-large col-3 text-white" type="submit">Enviar</button>
-                    </div>
+                    @include('utils.employees._form')
                 </form>
             </div>
         </div>

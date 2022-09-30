@@ -1,5 +1,4 @@
 @extends('layouts.auth')
-@section('titulo', 'Registrar perfil')
 @section('conteudo')
     <main class="bg-soft container-fluid">
         <section class="row">
@@ -21,7 +20,6 @@
                         </div>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
-                            <!-- Form -->
                             <div class="form-group mb-4">
                                 <label for="email">Seu e-mail</label>
                                 <div class="input-group">
@@ -34,9 +32,9 @@
                                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                                         </svg>
                                     </span>
-                                    <input type="email" name="email" class="form-control"
-                                        placeholder="example@company.com" id="email" autofocus required>
-
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" placeholder="Seu email" required autocomplete="email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -44,7 +42,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <!-- Form -->
+
                             <div class="form-group mb-4">
                                 <label for="password">Avatar</label>
                                 <div class="input-group">
@@ -57,7 +55,7 @@
                                         </svg>
                                     </span>
                                     <input type="avatar" name="avatar" placeholder="Adicione sua imagem..."
-                                        class="form-control" id="avatar">
+                                        class="form-control" id="avatar" />
                                 </div>
                             </div>
 
@@ -75,9 +73,9 @@
                                             <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
                                         </svg>
                                     </span>
-                                    <input type="name" name="name" placeholder="Seu nome..." class="form-control"
-                                        id="name" required>
-
+                                    <input id="name" type="text" placeholder="Seu nome"
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -97,9 +95,9 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </span>
-                                    <input type="password" name="password" placeholder="Sua senha..." class="form-control"
-                                        id="password" required autocomplete="new-password" required>
-
+                                    <input id="password" type="password" placeholder="Sua senha"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="new-password">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -108,20 +106,40 @@
                                 </div>
                             </div>
 
+                            <div class="form-group mb-4">
+                                <label for="password">Confirme sua senha</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon2">
+                                        <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                    <input placeholder="Confirmar senha" id="password-confirm" type="password"
+                                        class="form-control" name="password_confirmation" required
+                                        autocomplete="new-password">
+                                </div>
+                            </div>
+
                             <div class="mb-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="remember">
+                                    <input class="form-check-input" type="checkbox" value="" id="remember" />
                                     <label class="form-check-label fw-normal mb-0" for="remember">
-                                        Eu aceito os <a href="#" class="fw-bold">termos de condição</a>
+                                        Eu aceito os
+                                        <a href="#" class="fw-bold">termos de condição</a>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-gray-800">{{ __('Register') }}</button>
+                                <button type="submit" class="btn btn-gray-800">
+                                    {{ __('Register') }}
+                                </button>
                             </div>
                         </form>
-                        
+
                         <div class="d-flex justify-content-center align-items-center mt-4">
                             <span class="fw-normal">
                                 Já possui conta?

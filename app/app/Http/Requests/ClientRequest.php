@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ClientRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class ClientRequest extends FormRequest
     {
         return [
             'nome' => ['required', 'min:2', 'max:100'],
-            'endereco' => ['required', 'min:2', 'max:100'],
+            'endereco' => ['required', 'min:5', 'max:100']
         ];
     }
 }

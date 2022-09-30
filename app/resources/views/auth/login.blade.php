@@ -1,5 +1,4 @@
 @extends('layouts.auth')
-@section('titulo', 'Realizar login')
 @section('conteudo')
     <main class="bg-soft container-fluid">
         <section class="row">
@@ -34,8 +33,10 @@
                                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                                         </svg>
                                     </span>
-                                    <input type="email" name="email" class="form-control"
-                                        placeholder="example@company.com" id="email" autofocus required>
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        placeholder="Insira seu e-mail" value="{{ old('email') }}" required
+                                        autocomplete="email" autofocus />
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -57,9 +58,9 @@
                                                     clip-rule="evenodd"></path>
                                             </svg>
                                         </span>
-                                        <input type="password" name="password" placeholder="Sua senha..."
-                                            class="form-control" id="password" required autocomplete="new-password"
-                                            required>
+                                        <input id="password" type="password" placeholder="Insira sua senha"
+                                            class="form-control @error('password') is-invalid @enderror" name="password"
+                                            required autocomplete="current-password" />
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -71,22 +72,19 @@
 
                                 <div class="mb-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="remember">
+                                        <input class="form-check-input" type="checkbox" value="" id="remember" />
                                         <label class="form-check-label fw-normal mb-0" for="remember">
-                                            Eu aceito os <a href="#" class="fw-bold">termos de condição</a>
+                                            Eu aceito os
+                                            <a href="#" class="fw-bold">termos de condição</a>
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-gray-800">{{ __('Login') }}</button>
+                                <button type="submit" class="btn btn-gray-800">
+                                    {{ __('Login') }}
+                                </button>
                             </div>
                         </form>
 

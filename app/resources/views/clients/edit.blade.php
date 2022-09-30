@@ -14,21 +14,21 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('clients.index') }}">Clientes</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Editar Cliente</li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
-                <h1 class="h4">Editar Cliente</h1>
+                <h1 class="h4">
+                    <a href="{{ route('clients.index') }}">
+                        <i class="ph-caret-left-fill" style="font-size: 20px"></i>
+                    </a> Editar Cliente
+                </h1>
                 <p class="mb-0">
                     Editar cliente.
                 </p>
-            </div>
-            <div>
-                <a href="{{ route('clients.index') }}" class="btn btn-outline-gray">
-                    <i class="ph-caret-circle-left-fill"></i> Voltar</a>
             </div>
         </div>
     </div>
@@ -37,10 +37,8 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
                 <form action="{{ route('clients.update', $client) }}" method="POST">
-                    @include('clients.partials._form')
-                    <div class="d-flex justify-content-center mb-4">
-                        <button class="btn btn-primary btn-large col-3 text-white" type="submit">Atualizar</button>
-                    </div>
+                    @method('PUT')
+                    @include('utils.clients._form')
                 </form>
             </div>
         </div>

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employees;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -40,53 +38,85 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        //
+        DB::transaction(function () use ($request) {
+            $employee = Employees::create(
+                $request->only(['nome', 'cpf', 'data_contratacao'])
+            );
+
+            $employee->address()->create(
+                $request->only(['logradouro', 'numero', 'complemento', 'bairro', 'cidade', 'cep', 'estado'])
+            );
+        });
+
+        return redirect()->route('employees.index')
+            ->with('mensagem', 'Funcionário cadastrado com sucesso!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Employees $employee
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Employees $employee)
     {
-        //
+        return view('employees.show', [
+            'employee' => $employee
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Employees $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employees $employee)
     {
-        //
+        return view('employees.edit', [
+            'employee' => $employee
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Employees $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployeeRequest $request, Employees $employee)
     {
-        //
+        DB::transaction(function () use ($request, $employee) {
+            $employee->update(
+                $request->only(['nome', 'cpf', 'data_contratacao'])
+            );
+
+            $employee->address->update(
+                $request->only(['logradouro', 'numero', 'complemento', 'bairro', 'cidade', 'cep', 'estado'])
+            );
+        });
+        return redirect()->route('employees.index')
+            ->with('mensagem', 'Funcionário atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Employees $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employees $employee)
     {
-        //
+        DB::transaction(function () use ($employee) {
+            $employee->address->delete();
+
+            $employee->delete();
+        });
+
+        return redirect()->route('employees.index')
+            ->with('mensagem', 'Funcionário apagado com sucesso!');
     }
 }

@@ -14,18 +14,18 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Projeto</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $project->nome }}</li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
-                <h1 class="h4">Detalhe do Projeto {{ $project->nome }}</h1>
-            </div>
-            <div>
-                <a href="{{ route('projects.index') }}" class="btn btn-outline-gray">
-                    <i class="ph-caret-circle-left-fill"></i> Voltar</a>
+                <h1 class="h4">
+                    <a href="{{ route('projects.index') }}">
+                        <i class="ph-caret-left-fill" style="font-size: 20px"></i>
+                    </a> Detalhe do Projeto {{ $project->nome }}
+                </h1>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
                 <h5 class="card-header">Funcionários que trabalham no projeto {{ $project->nome }}</h5>
                 <div class="card-body">
                     <table class="table table-centered table-nowrap mb-0 rounded">
-                        <thead class="thead-light">
+                        <thead>
                             <tr>
                                 <th class="border-0 rounded-start">ID</th>
                                 <th class="border-0">Nome</th>

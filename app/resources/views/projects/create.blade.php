@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', 'Novo Cliente')
+@section('titulo', 'Criar Projetos')
 @section('conteudo')
     <div class="py-4">
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
@@ -15,28 +15,28 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Novo Cliente</li>
+                <li class="breadcrumb-item active" aria-current="page">Novo Projetos</li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
                 <h1 class="h4">
-                    <a href="{{ route('clients.index') }}">
+                    <a href="{{ route('projects.index') }}">
                         <i class="ph-caret-left-fill" style="font-size: 20px"></i>
-                    </a>
-                    Novo Cliente
-                </h1>   
+                    </a> Novo Projeto
+                </h1>
                 <p class="mb-0">
-                    Registrando um novo cliente.
+                    Registrando um novo Projeto.
                 </p>
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
-                <form action="{{ route('clients.store') }}" method="POST">
-                    @include('utils.clients._form')
+                <form action="{{ route('projects.store') }}" method="POST">
+                    @include('utils.projects._form')
                 </form>
             </div>
         </div>

@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0.2",
+        "clemdesign/php-mask": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -44,6 +45,10 @@
             "Database\\Seeders\\": "database/seeders/"
         }
     },
+    "files": [
+        "app/Helpers/converters.php",
+        "app/Helpers/utils.php"
+    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +22,7 @@ class ProjectController extends Controller
             'projects' => $projects
         ]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,7 +32,6 @@ class ProjectController extends Controller
     {
         $clientes = Client::get();
         $funcionarios = Employees::ativos();
-
         return view('projects.create', [
             'clientes' => $clientes,
             'funcionarios' => $funcionarios
@@ -51,6 +46,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        DB::transaction(function () use ($request) {
+            $project = Projects::create(
+                $request->except(['_token', 'funcionarios'])
+            );
+
+            $project->employees()->attach($request->funcionarios);
+        });
+        return redirect()->route('projects.index')
+            ->with('mensagem', 'Projeto criado com sucesso!');
     }
 
     /**
@@ -62,7 +66,6 @@ class ProjectController extends Controller
     public function show(Projects $project)
     {
         $project->load(['client', 'employees']);
-
         return view('projects.show', [
             'project' => $project
         ]);
@@ -78,7 +81,6 @@ class ProjectController extends Controller
     {
         $clientes = Client::get();
         $funcionarios = Employees::ativos();
-
         return view('projects.edit', [
             'project' => $project,
             'clientes' => $clientes,
@@ -102,7 +104,6 @@ class ProjectController extends Controller
 
             $project->employees()->sync($request->funcionarios);
         });
-
         return redirect()->route('projects.index')
             ->with('mensagem', 'Projeto atualizado com sucesso!');
     }
@@ -120,7 +121,6 @@ class ProjectController extends Controller
 
             $project->delete();
         });
-
         return redirect()->route('projects.index')
             ->with('mensagem', 'Projeto excluido com sucesso!');
     }

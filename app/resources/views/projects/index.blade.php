@@ -14,7 +14,7 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
                     Lista de Projetos
                 </li>
@@ -28,17 +28,15 @@
                 </p>
             </div>
             <div>
-                <a href="#" class="btn btn-outline-gray-600 d-inline-flex align-items-center">
+                <a href="{{ route('projects.create') }}"class="btn btn-outline-gray-600 d-inline-flex align-items-center">
                     Criar Projeto
                 </a>
             </div>
         </div>
     </div>
     <div class="card border-0 shadow mb-4">
-        <div class="card-body">
-            <div class="table-responsive">
-                @include('projects.partials._table')
-            </div>
+        <div class="table-responsive">
+            @include('utils.projects._table')
         </div>
     </div>
     {{ $projects->links() }}
